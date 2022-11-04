@@ -8,7 +8,22 @@ function App() {
   const [weather, setWeather] = useState({})
 
 
+useEffect(() => {
+    const getWeather = () => { // get current weather 
+      axios.get(`https://api.openweathermap.org/data/2.5/weather?q=Karachi&appid=e0f99c494c2ce394a18cc2fd3f100543&units=metric`)
+        .then(function (response) {
 
+          console.log("data: ", response.data);
+          setWeather(response.data)
+
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        })
+    }
+    getWeather();
+  }, [])
   const getWeather = (e) => {
     e.preventDefault();
     console.log("CityName", cityName)
